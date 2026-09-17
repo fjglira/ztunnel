@@ -24,12 +24,13 @@ Use this workflow to backport a commit from master to a release branch.
    git cherry-pick -x <sha>
    ```
 
-   Resolve conflicts if needed. Keep `// OSSM-only:` annotations and `#[cfg(feature = "openssl-tls")]` gates intact.
+   Resolve conflicts if needed. Keep `OSSM-only:` annotations (in their correct per-language syntax)
+   and `#[cfg(feature = "tls-openssl")]` gates intact.
 
 4. **Verify tests pass locally**:
 
    ```bash
-   cargo build && cargo test && cargo test --features openssl-tls
+   cargo build && cargo test && cargo test --features tls-openssl
    ```
 
 5. **Push to your fork and open a PR** targeting `openshift-service-mesh/ztunnel:release-X.Y`.

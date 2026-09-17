@@ -7,8 +7,9 @@ See [docs/upstream.md](../../docs/upstream.md) for the contribution workflow.
 
 Examples: OCP CI config, OpenSSL/FIPS TLS backend, OSSM branding, Red Hat compliance patches.
 
-→ If YES: annotate with `// OSSM-only: <JIRA-KEY> <reason>`. Gate TLS changes behind
-`#[cfg(feature = "openssl-tls")]`. No upstream PR needed. Stop.
+→ If YES: annotate with `OSSM-only: <JIRA-KEY> <reason>` using the correct comment syntax for
+the file type (see `.claude/rules/api-conventions.md`). Gate TLS changes behind
+`#[cfg(feature = "tls-openssl")]`. No upstream PR needed. Stop.
 
 ## Step 2: Does the equivalent fix already exist in upstream ztunnel?
 
@@ -26,6 +27,6 @@ upstream PR in the description.
 
 | Situation | Action |
 |---|---|
-| OSSM-specific forever | Annotate `// OSSM-only:`, feature-flag if TLS |
+| OSSM-specific forever | Annotate `OSSM-only:` (language-aware syntax), feature-flag if TLS |
 | Already upstream | Cherry-pick / rebase from upstream |
 | Belongs upstream, not yet merged | Open upstream PR first |

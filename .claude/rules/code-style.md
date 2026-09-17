@@ -9,7 +9,7 @@
 ## Rules
 
 - Follow upstream ztunnel Rust style: `rustfmt` for formatting, `cargo clippy -- -D warnings` for lints.
-- Do **not** mix rustls and OpenSSL code paths without feature-flag gating (`#[cfg(feature = "openssl-tls")]`).
+- Do **not** mix rustls and OpenSSL code paths without feature-flag gating (`#[cfg(feature = "tls-openssl")]`).
 - Changes to the **main runtime** (admin, XDS) must not affect data-plane latency on the **worker runtime**.
   The two Tokio runtimes are intentionally isolated — see ARCHITECTURE.md.
 - Keep OSSM-specific code minimal and always annotated with `// OSSM-only: <JIRA-KEY> <reason>`.

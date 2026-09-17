@@ -18,18 +18,19 @@ OpenShift Service Mesh fork.
 **Correctness**
 
 - Does the change respect the main/worker runtime isolation? Blocking calls must not land on the worker runtime.
-- TLS changes: does the code correctly handle both rustls and OpenSSL paths (`#[cfg(feature = "openssl-tls")]`)?
+- TLS changes: does the code correctly handle both rustls and OpenSSL paths (`#[cfg(feature = "tls-openssl")]`)?
 - HBONE / proxy changes: verify port usage matches the table in ARCHITECTURE.md.
 
 **OSSM-only annotations**
 
-- Every OSSM-specific hunk must have `// OSSM-only: <JIRA-KEY> <reason>` on the same or preceding line.
-- OpenSSL/FIPS code must be feature-flag gated, not unconditional.
+- Every OSSM-specific hunk must have the `OSSM-only: <JIRA-KEY> <reason>` marker using the correct
+  comment syntax for the file type (`//` for Rust, `#` for shell/YAML/TOML, `<!-- -->` for Markdown).
+- OpenSSL/FIPS code must be feature-flag gated (`#[cfg(feature = "tls-openssl")]`), not unconditional.
 
 **Test coverage**
 
 - New code paths must have unit or integration tests in `tests/`.
-- TLS changes must be tested with both `cargo test` and `cargo test --features openssl-tls`.
+- TLS changes must be tested with both `cargo test` and `cargo test --features tls-openssl`.
 
 **Code quality**
 

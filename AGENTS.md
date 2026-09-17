@@ -42,7 +42,7 @@ docs/         # Midstream-specific documentation
 cargo build
 
 # Build with OpenSSL (FIPS path used in OSSM)
-cargo build --features openssl-tls
+cargo build --features tls-openssl
 
 # Run tests
 cargo test
@@ -69,7 +69,7 @@ See [ARCHITECTURE.md](ARCHITECTURE.md) for the full port table. Critical ones:
 
 ## OSSM-Specific Concerns
 
-- **FIPS/OpenSSL**: OSSM builds ztunnel with `--features openssl-tls` instead of the upstream rustls.
+- **FIPS/OpenSSL**: OSSM builds ztunnel with `--features tls-openssl` instead of the upstream rustls.
   TLS-related changes must be tested against both feature flags.
 - **OCP CI**: Prow jobs are defined in the [openshift/release](https://github.com/openshift/release) repository.
 - **PR workflow**: see [docs/upstream.md](docs/upstream.md) for the upstream-first rule and OSSM-only annotation convention.

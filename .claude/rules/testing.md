@@ -17,7 +17,7 @@ OSSM builds with OpenSSL; upstream uses rustls. Test both paths for TLS-related 
 
 ```bash
 cargo test
-cargo test --features openssl-tls
+cargo test --features tls-openssl
 ```
 
 ## CI
@@ -28,5 +28,6 @@ cargo test --features openssl-tls
 ## Rules
 
 - Never skip a failing test by commenting it out — open an issue and mark with `#[ignore = "issue #N"]`.
-- OSSM-specific test cases should be gated with `#[cfg(feature = "openssl-tls")]` or placed in
-  separate test files with an `// OSSM-only:` header comment.
+- OSSM-specific test cases should be gated with `#[cfg(feature = "tls-openssl")]` or placed in
+  separate test files with a `# OSSM-only: <JIRA-KEY> <reason>` header comment (shell-style for
+  `.sh` test helpers; `// OSSM-only:` for `.rs` test files).
